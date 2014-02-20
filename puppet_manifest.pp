@@ -6,6 +6,15 @@ file {"rah_file":
 	content	=>	"I am a file!!!",
 }
 
+notify { '/tem/rah2 has already been synced.':
+	require => File['rah_file']
+}
+
+$notification_msg = '/tmp/rah2 will be synced.'
+notify { '/tmp/rah2 will be synced.':
+	message => $notification_msg,
+	before	=> File['rah_file']
+}
 
 file {"text_file" :
 	path	=>	'/tmp/text_file',
